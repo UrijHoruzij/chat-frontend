@@ -1,0 +1,204 @@
+@import "../../styles/variable.scss";
+
+.message {
+  $self: &;
+  display: flex;
+  margin-top: 24px;
+  &__avatar {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 24px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+  }
+  &__bubble {
+    display: flex;
+    border-radius: 15px 15px 15px 0;
+    background-color: $yellow;
+    overflow: hidden;
+  }
+  &__text {
+    font-weight: 300;
+    font-size: 14px;
+    color: $blackText;
+    padding: 16px;
+    margin: 0;
+    line-height: 24px;
+  }
+  &__info {
+    display: flex;
+  }
+  &__attachments {
+    display: flex;
+    align-items: center;
+    &-item {
+      width: 48px;
+      height: 48px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 16px;
+      margin-right: 16px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  &__date {
+    font-weight: 300;
+    font-size: 12px;
+    color: $greyText;
+    margin-top: 16px;
+  }
+  &__audio {
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    &-progress {
+      left: 0;
+      top: 0;
+      position: absolute;
+      background-color: $yellowDark;
+      height: 100%;
+      transition: width 0.3s ease;
+      z-index: 1;
+    }
+    &-content {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    &-btn {
+      z-index: 10;
+      button {
+        cursor: pointer;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $white;
+        outline: none;
+        color: $blackText;
+      }
+    }
+    &-wave {
+      z-index: 10;
+      margin-left: 24px;
+      margin-right: 24px;
+      img {
+        z-index: 10;
+      }
+    }
+    &-duration {
+      font-weight: 300;
+      font-size: 12px;
+      color: $blackText;
+      z-index: 10;
+    }
+  }
+
+  &__typing {
+    padding: 16px;
+    span {
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background: $white;
+      display: inline-block;
+      margin-right: 8px;
+      animation: 0.8s typingAnimation infinite ease-out 0.1s;
+      &:nth-of-type(2) {
+        animation: 0.8s typingAnimation infinite ease-out 0.2s;
+      }
+      &:nth-of-type(3) {
+        animation: 0.8s typingAnimation infinite ease-out 0.3s;
+        margin-right: 0;
+      }
+    }
+  }
+  &--image {
+    #{$self}__attachments {
+      display: flex;
+      &--isme {
+        #{$self}__attachments-item {
+          background-color: $grey;
+          border-radius: 15px 15px 0 15px;
+        }
+      }
+      &-item {
+        margin: 0;
+        padding: 8px;
+        width: 184px;
+        height: 184px;
+        display: flex;
+        background-color: $yellow;
+        border-radius: 15px 15px 15px 0;
+        img {
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+  &--isme {
+    display: flex;
+    flex-direction: row-reverse;
+    #{$self}__bubble {
+      display: flex;
+      flex-direction: row-reverse;
+      border-radius: 15px 15px 0 15px;
+      background-color: $grey;
+    }
+    #{$self}__avatar {
+      margin-right: 24px;
+      margin-left: 16px;
+    }
+    #{$self}__date {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    #{$self}__info {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    #{$self}__audio {
+      &-progress {
+        background-color: $greyText;
+      }
+    }
+    #{$self}__attachments {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+  &--is-audio {
+    audio {
+      display: none;
+    }
+  }
+  &--is-typing {
+    #{$self}__avatar {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@keyframes typingAnimation {
+  from {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

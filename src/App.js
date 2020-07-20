@@ -1,20 +1,28 @@
-import React from 'react';
+import React from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
 import socketIOClient from "socket.io-client";
-import './App.css';
-import dotenv from 'dotenv';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-dotenv.config({path: '../.env'});
+import dotenv from "dotenv";
 
-function App() {
-  console.log(process.env.PORT);
-  const socket = socketIOClient('http://localhost:5000/');
+import { Auth, Home } from "./pages";
+import DialogsItem from "./components/DialogsItem";
+dotenv.config({ path: "../.env" });
+
+const App = (props) => {
+  const { isAuth } = props;
   return (
-    <div className="App">
-      <Header></Header>
-      <Sidebar></Sidebar>
+    <div className="wrapper">
+      <DialogsItem
+        avatar="https://images.unsplash.com/photo-1594840295384-3aad16925a4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+        partner="Helena Lopes"
+      ></DialogsItem>
+      <Switch>
+        <Route exact path={["/signin", "/signup"]} component={Auth} />
+        <Route
+          path="/"
+          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
+        />
+      </Switch>
     </div>
   );
-}
-
+};
 export default App;
