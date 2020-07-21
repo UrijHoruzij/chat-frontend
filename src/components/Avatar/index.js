@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import "./Avatar.scss";
 
-const Avatar = ({ avatar, name, size }) => (
+const Avatar = ({ user, size }) => (
   <div className="avatar">
     <img
       className={classNames("avatar__img", {
@@ -12,15 +12,26 @@ const Avatar = ({ avatar, name, size }) => (
         "avatar__img--medium": size === "medium",
         "avatar__img--large": size === "large",
       })}
-      src={avatar}
-      alt={name}
+      src={user.avatar}
+      alt={user.fullname}
     />
+    {user.isOnline && (
+      <div
+        className={classNames("avatar__is-online", {
+          "avatar__is-online--medium": size === "medium",
+          "avatar__is-online--large": size === "large",
+        })}
+      ></div>
+    )}
   </div>
 );
 
+Avatar.defaulProps = {
+  user: {},
+};
+
 Avatar.propTypes = {
-  avatar: PropTypes.string,
-  name: PropTypes.string,
+  user: PropTypes.object,
   size: PropTypes.string,
 };
 

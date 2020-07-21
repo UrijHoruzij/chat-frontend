@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import Avatar from "../Avatar";
 
-const DialogItem = ({ avatar, partner, lastMessage, isSelected }) => {
+const DialogItem = ({ avatar, partner, lastMessage, isSelected, isOnline }) => {
   return (
     <div
       className={classNames("dialogs-item", {
@@ -16,6 +16,7 @@ const DialogItem = ({ avatar, partner, lastMessage, isSelected }) => {
         size="small"
         avatar={avatar}
         name={partner}
+        isOnline
       />
       <div className="dialogs-item-content">
         <h3 className="dialogs-item-content__partner">{partner}</h3>

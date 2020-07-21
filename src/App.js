@@ -14,6 +14,7 @@ const App = (props) => {
       <DialogsItem
         avatar="https://images.unsplash.com/photo-1594840295384-3aad16925a4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
         partner="Helena Lopes"
+        isOnline
       ></DialogsItem>
       <Switch>
         <Route exact path={["/signin", "/signup"]} component={Auth} />
