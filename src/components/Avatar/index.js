@@ -5,7 +5,13 @@ import classNames from "classnames";
 import "./Avatar.scss";
 
 const Avatar = ({ user, size }) => (
-  <div className="avatar">
+  <div
+    className={classNames("avatar", {
+      "avatar--small": size === "small",
+      "avatar--medium": size === "medium",
+      "avatar--large": size === "large",
+    })}
+  >
     <img
       className={classNames("avatar__img", {
         "avatar__img--small": size === "small",

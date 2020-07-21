@@ -2,31 +2,69 @@
 
 .dialogs-item {
   $self: &;
-  display: flex;
-  padding: 16px 8px;
-  width: 100%;
-
-  &--selected {
-    background-color: $grey;
+  &__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 8px;
+    width: 100%;
+    background-color: $white;
+    border-radius: 5px;
+    &--selected {
+      background-color: $grey;
+    }
   }
   &__avatar {
     margin-right: 16px;
   }
   &-content {
+    position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    width: 361px;
+    &__line-1 {
+      display: flex;
+      align-items: center;
+    }
+    &__line-2 {
+      display: flex;
+      align-items: center;
+    }
+
     &__partner {
       margin: 0;
-      padding: 0;
       font-size: 18px;
       font-weight: 300;
       color: $blackText;
     }
     &__last-message {
+      color: $greyText;
+      font-size: 14px;
+      font-weight: 300;
+      text-overflow: ellipsis;
+      margin: 0;
+      margin-top: 8px;
     }
     &__date {
+      font-size: 14px;
+      font-weight: 400;
+      color: $greyText;
     }
     &__not-readed {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 300;
+      color: $white;
+      &::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-color: $yellow;
+        border-radius: 50%;
+      }
     }
   }
 }

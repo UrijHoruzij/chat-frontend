@@ -2,7 +2,19 @@
 
 .avatar {
   position: relative;
-  display: inline-flex;
+  display: inline-block;
+  &--small {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  &--medium {
+    max-width: 112px;
+    max-height: 122px;
+  }
+  &--large {
+    max-width: 232px;
+    max-height: 232px;
+  }
   &__img {
     border-radius: 50%;
     overflow: hidden;

@@ -3,42 +3,57 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import Avatar from "../Avatar";
+import Time from "../Time";
 
-const DialogItem = ({ avatar, partner, lastMessage, isSelected, isOnline }) => {
+import "./DialogsItem.scss";
+
+const DialogsItem = ({ partner, lastMessage, isSelected }) => {
   return (
-    <div
-      className={classNames("dialogs-item", {
-        "dialogs-item--selected": isSelected,
-      })}
-    >
-      <Avatar
-        className="dialogs-item__avatar"
-        size="small"
-        avatar={avatar}
-        name={partner}
-        isOnline
-      />
-      <div className="dialogs-item-content">
-        <h3 className="dialogs-item-content__partner">{partner}</h3>
-        <p className="dialogs-item-content__last-message">{lastMessage.text}</p>
-        <span className="dialogs-item-content__date">{lastMessage.date}</span>
-        <div className="dialogs-item-content__not-readed">
-          {lastMessage.isReaded}
+    <div className="dialogs-item">
+      <div
+        className={classNames("dialogs-item__block", {
+          "dialogs-item__block--selected": isSelected,
+        })}
+      >
+        <div className="dialogs-item__avatar">
+          <Avatar user={partner} size="small" />
+        </div>
+
+        <div className="dialogs-item-content">
+          <div className="dialogs-item-content__line-1">
+            <h3 className="dialogs-item-content__partner">
+              {partner.fullname}
+            </h3>
+            <span className="dialogs-item-content__date">
+              <Time date={lastMessage.date} />
+            </span>
+          </div>
+          <div className="dialogs-item-content__line-2">
+            <p className="dialogs-item-content__last-message">
+              {lastMessage.text}
+            </p>
+
+            {!lastMessage.isReaded && isSelected && (
+              <div className="dialogs-item-content__not-readed">
+                {lastMessage.count}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-DialogItem.defaultProps = {
+DialogsItem.defaultProps = {
+  partner: {},
   lastMessage: {},
 };
 
-DialogItem.propTypes = {
-  avatar: PropTypes.string,
-  partner: PropTypes.string,
+DialogsItem.propTypes = {
+  partner: PropTypes.object,
   lastMessage: PropTypes.object,
   isSelected: PropTypes.bool,
 };
 
-export default DialogItem;
+export default DialogsItem;
