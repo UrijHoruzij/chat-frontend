@@ -20,20 +20,19 @@ const DialogsItem = ({ partner, lastMessage, isSelected }) => {
         </div>
 
         <div className="dialogs-item-content">
-          <div className="dialogs-item-content__line-1">
+          <div className="dialogs-item-content__partner-and-date">
             <h3 className="dialogs-item-content__partner">
               {partner.fullname}
             </h3>
             <span className="dialogs-item-content__date">
-              <Time date={lastMessage.date} />
+              <Time type="short" date={lastMessage.date} />
             </span>
           </div>
-          <div className="dialogs-item-content__line-2">
+          <div className="dialogs-item-content__message-and-not-readed">
             <p className="dialogs-item-content__last-message">
               {lastMessage.text}
             </p>
-
-            {!lastMessage.isReaded && isSelected && (
+            {!lastMessage.isReaded && !isSelected && (
               <div className="dialogs-item-content__not-readed">
                 {lastMessage.count}
               </div>
