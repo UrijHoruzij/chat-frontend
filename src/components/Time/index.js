@@ -9,12 +9,7 @@ const Time = ({ date, type }) => {
     date === new Date() ? (
       <Fragment>{format(date, "MM.dd.yyyy")}</Fragment>
     ) : (
-      <Fragment>
-        {formatDistanceToNow(date, {
-          addSuffix: true,
-          locale: ruLocale,
-        })}
-      </Fragment>
+      <Fragment>{format(date, "HH:mm")}</Fragment>
     )
   ) : (
     <Fragment>

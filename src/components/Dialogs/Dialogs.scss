@@ -1,0 +1,94 @@
+@import "../../styles/variable.scss";
+
+.dialogs {
+  width: 25%;
+  height: 100vh;
+  margin-left: 16px;
+  &-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &-link {
+    text-decoration: none;
+  }
+  &-item {
+    $self: &;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    &:hover {
+      #{$self}__block {
+        background-color: $grey;
+      }
+    }
+    &__block {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      background-color: $white;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+      &--selected {
+        background-color: $grey;
+      }
+    }
+    &__avatar {
+      margin-right: 16px;
+    }
+    &-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+      &__partner-and-date {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      &__message-and-not-readed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+      }
+      &__partner {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 300;
+        color: $blackText;
+        text-decoration: none;
+      }
+      &__date {
+        font-size: 14px;
+        font-weight: 400;
+        color: $greyText;
+        text-decoration: none;
+      }
+      &__last-message {
+        color: $greyText;
+        font-size: 14px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+        margin: 0;
+        height: 16px;
+        width: 80%;
+        overflow: hidden;
+        text-decoration: none;
+      }
+      &__not-readed {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        font-weight: 300;
+        color: $white;
+        width: 16px;
+        height: 16px;
+        background-color: $yellow;
+        border-radius: 50%;
+        text-decoration: none;
+      }
+    }
+  }
+}
