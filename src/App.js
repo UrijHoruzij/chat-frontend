@@ -4,17 +4,21 @@ import socketIOClient from "socket.io-client";
 import dotenv from "dotenv";
 
 import { Auth, Home } from "./pages";
+
 import Dialogs from "./components/Dialogs";
+import Messages from "./components/Messages";
+
 dotenv.config({ path: "../.env" });
 
 const App = (props) => {
   const { isAuth } = props;
+  // const isAuth = true;
   return (
     <div className="wrapper">
       <Dialogs
         items={[
           {
-            id: "1",
+            _id: "1",
             userId: "233354",
             currentDialogId: "123",
             partner: {
@@ -34,7 +38,7 @@ const App = (props) => {
             },
           },
           {
-            id: "2",
+            _id: "2",
             userId: "233354",
             currentDialogId: "123",
             partner: {
@@ -54,7 +58,7 @@ const App = (props) => {
             },
           },
           {
-            id: "3",
+            _id: "3",
             userId: "233354",
             currentDialogId: "123",
             partner: {
@@ -74,7 +78,7 @@ const App = (props) => {
             },
           },
           {
-            id: "4",
+            _id: "4",
             userId: "233354",
             currentDialogId: "123",
             partner: {
@@ -94,7 +98,7 @@ const App = (props) => {
             },
           },
           {
-            id: "5",
+            _id: "5",
             userId: "233354",
             currentDialogId: "123",
             partner: {
@@ -114,7 +118,7 @@ const App = (props) => {
             },
           },
           {
-            id: "6",
+            _id: "6",
             userId: "233354",
             currentDialogId: "1235",
             partner: {
@@ -134,7 +138,7 @@ const App = (props) => {
             },
           },
           {
-            id: "7",
+            _id: "7",
             userId: "233354",
             partner: {
               avatar:
@@ -154,6 +158,7 @@ const App = (props) => {
           },
         ]}
       ></Dialogs>
+      <Messages></Messages>
       <Switch>
         <Route exact path={["/signin", "/signup"]} component={Auth} />
         <Route
@@ -164,4 +169,5 @@ const App = (props) => {
     </div>
   );
 };
+
 export default App;

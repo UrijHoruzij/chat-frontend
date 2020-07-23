@@ -2,7 +2,7 @@
 <Dialogs
   items={[
     {
-      id: "1",
+      _id: "1",
       userId: "233354",
       currentDialogId: "123",
       partner: {
@@ -22,7 +22,7 @@
       },
     },
     {
-      id: "2",
+      _id: "2",
       userId: "233354",
       currentDialogId: "123",
       partner: {
@@ -42,7 +42,7 @@
       },
     },
     {
-      id: "3",
+      _id: "3",
       userId: "233354",
       currentDialogId: "123",
       partner: {
@@ -62,7 +62,7 @@
       },
     },
     {
-      id: "4",
+      _id: "4",
       userId: "233354",
       currentDialogId: "123",
       partner: {
@@ -82,7 +82,7 @@
       },
     },
     {
-      id: "5",
+      _id: "5",
       userId: "233354",
       currentDialogId: "123",
       partner: {
@@ -102,7 +102,7 @@
       },
     },
     {
-      id: "6",
+      _id: "6",
       userId: "233354",
       currentDialogId: "1235",
       partner: {
@@ -122,7 +122,7 @@
       },
     },
     {
-      id: "7",
+      _id: "7",
       userId: "233354",
       partner: {
         avatar:

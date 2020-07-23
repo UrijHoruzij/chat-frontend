@@ -1,6 +1,6 @@
 ```js
 <DialogsItem
-  id="123"
+  _id="123"
   userId="233354"
   currentDialogId="123"
   partner={{
@@ -23,7 +23,7 @@
 
 ```js
 <DialogsItem
-  id="123"
+  _id="123"
   userId="233354"
   partner={{
     avatar:

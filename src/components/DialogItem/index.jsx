@@ -17,13 +17,19 @@ const renderLastMessage = (message, userId) => {
   return `${message.userId === userId ? "Вы: " : ""}${text}`;
 };
 
-const DialogsItem = ({ id, userId, partner, lastMessage, currentDialogId }) => {
+const DialogsItem = ({
+  _id,
+  userId,
+  partner,
+  lastMessage,
+  currentDialogId,
+}) => {
   return (
-    <Link className="dialogs-link" to={`/dialog/${id}`}>
+    <Link className="dialogs-link" to={`/dialog/${_id}`}>
       <div className="dialogs-item">
         <div
           className={classNames("dialogs-item__block", {
-            "dialogs-item__block--selected": currentDialogId === id,
+            "dialogs-item__block--selected": currentDialogId === _id,
           })}
         >
           <div className="dialogs-item__avatar">

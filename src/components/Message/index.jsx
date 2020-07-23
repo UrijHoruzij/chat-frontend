@@ -91,7 +91,6 @@ const MessageAudio = ({ audioSrc }) => {
 };
 
 const Message = ({
-  avatar,
   user,
   text,
   attachments,
@@ -125,7 +124,7 @@ const Message = ({
       })}
     >
       <div className="message__avatar">
-        <Avatar avatar={avatar} name={user.fullname} size="small" />
+        <Avatar avatar={user.avatar} name={user.fullname} size="small" />
       </div>
       <div className="message__content">
         <div className="message__info">
@@ -173,7 +172,6 @@ Message.defaultProps = {
 };
 
 Message.propTypes = {
-  avatar: PropTypes.string,
   text: PropTypes.string,
   date: PropTypes.string,
   user: PropTypes.object,

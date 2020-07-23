@@ -9,6 +9,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    &__text {
+      font-size: 16px;
+      font-weight: 300;
+      color: $blackText;
+    }
   }
   &-link {
     text-decoration: none;
