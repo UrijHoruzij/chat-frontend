@@ -1,20 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { Popover } from "antd";
 
-import { convertCurrentTime, isAudio } from "../../utils";
+import { convertCurrentTime, isAudio } from "../../utils/helpers";
 
-import Avatar from "../Avatar";
-import Time from "../Time";
+import { Avatar, Time, Button } from "../";
 
 import "./Message.scss";
 
 import waveSvg from "../../assets/wave.svg";
-
-library.add(faPause, faPlay);
+import playSvg from "../../assets/play.svg";
+import pauseSvg from "../../assets/pause.svg";
 
 const MessageAudio = ({ audioSrc }) => {
   const audioElem = useRef(null);
@@ -73,9 +70,17 @@ const MessageAudio = ({ audioSrc }) => {
         <div className="message__audio-btn">
           <button onClick={togglePlay}>
             {isPlaying ? (
-              <FontAwesomeIcon icon="pause" />
+              <img
+                className="message__audio-btn-icon"
+                src={pauseSvg}
+                alt="Pause"
+              ></img>
             ) : (
-              <FontAwesomeIcon icon="play" />
+              <img
+                className="message__audio-btn-icon"
+                src={playSvg}
+                alt="Play"
+              ></img>
             )}
           </button>
         </div>
@@ -124,9 +129,24 @@ const Message = ({
       })}
     >
       <div className="message__avatar">
-        <Avatar avatar={user.avatar} name={user.fullname} size="small" />
+        <Avatar user={user} size="small" />
       </div>
       <div className="message__content">
+        <Popover
+          content={
+            <div>
+              <Button className="button--color" onClick={onRemoveMessage}>
+                Удалить сообщение
+              </Button>
+            </div>
+          }
+          trigger="click"
+        >
+          <div className="message__icon-actions">
+            <Button className="button--color"></Button>
+          </div>
+        </Popover>
+
         <div className="message__info">
           {(text || isTyping || audio) && (
             <div className="message__bubble">

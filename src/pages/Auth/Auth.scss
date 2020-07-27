@@ -1,11 +1,89 @@
 @import "../../styles/variable";
 .auth {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  &__content {
+  &__success-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      color: $blackText;
+      margin: 0;
+      margin-top: 16px;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      color: $greyText;
+      margin: 0;
+      margin-top: 16px;
+    }
+  }
+  &__top {
+    text-align: center;
+    margin-bottom: 32px;
+    h2 {
+      font-size: 30px;
+      font-weight: 400;
+      color: $blackText;
+      margin: 0;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 300;
+      color: $greyText;
+      margin: 0;
+      margin-top: 24px;
+    }
+  }
+  .form {
+    &-item {
+      margin: 0;
+      margin-bottom: 8px;
+    }
+    &-input {
+      padding: 12px;
+      border-radius: 5px;
+    }
+    &-button {
+      margin: 0;
+      margin-bottom: 24px;
+    }
+  }
+  .ant-input-prefix {
+    margin-right: 8px;
+  }
+  .ant-form-item-explain {
+    color: rgb(223, 39, 39);
+  }
+  .ant-input-affix-wrapper {
+    &:hover {
+      border-color: $color;
+    }
+    &-focused {
+      border-color: $color;
+      box-shadow: 0 0 0 1px $color;
+    }
+  }
+
+  .block {
+    width: 420px;
   }
   &__register-link {
+    text-align: center;
+    display: block;
     text-decoration: none;
-    color: #202020;
+    color: $greyText;
+    font-size: 18px;
+    font-weight: 300;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: $color;
+    }
   }
 }

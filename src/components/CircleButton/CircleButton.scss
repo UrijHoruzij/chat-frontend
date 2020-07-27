@@ -1,26 +1,28 @@
 @import "../../styles/variable.scss";
-.white {
-  color: #fff;
-}
 .button-circle {
   border: none;
   outline: none;
   border-radius: 50%;
-  :hover {
-  }
+  transition: all 0.3s ease-in-out;
   &--small {
     width: 40px;
     height: 40px;
   }
   &--medium {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
   }
   &--large {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
   }
-  &--green {
-    background-color: $yellow;
+  &--color {
+    background-color: $color;
+    &:hover {
+      background-color: $colorDark;
+    }
+  }
+  &--border {
+    border: 1px solid $greyText;
   }
 }

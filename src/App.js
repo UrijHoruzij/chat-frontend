@@ -158,7 +158,50 @@ const App = (props) => {
           },
         ]}
       ></Dialogs>
-      <Messages></Messages>
+      <Messages
+        items={[
+          {
+            user: {
+              _id: "123",
+              avatar:
+                "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+              fullname: "Helena Lopes",
+            },
+            text: "Привет!",
+            date: new Date(),
+            attachments: [
+              {
+                filename: "Helena Lopes",
+                url:
+                  "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+              },
+            ],
+          },
+          {
+            user: {
+              _id: "123",
+              avatar:
+                "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+              fullname: "Helena Lopes",
+            },
+            date: new Date(),
+            audio:
+              "https://notificationsounds.com/soundfiles/5d44ee6f2c3f71b73125876103c8f6c4/file-sounds-1152-swinging.mp3",
+          },
+        ]}
+        user={{
+          _id: "1",
+          avatar:
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+          name: "Helena Lopes",
+        }}
+        partner={{
+          _id: "2",
+          avatar:
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+          name: "Helena Lopes",
+        }}
+      ></Messages>
       <Switch>
         <Route exact path={["/signin", "/signup"]} component={Auth} />
         <Route

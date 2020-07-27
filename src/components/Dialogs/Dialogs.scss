@@ -4,7 +4,29 @@
   width: 25%;
   height: 100vh;
   margin-left: 16px;
+  &__search {
+    padding: 16px 16px;
+    background-color: $grey;
+    border-radius: 5px;
+    &-input {
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 300;
+      color: $greyText;
+    }
+  }
+  .ant-input-affix-wrapper {
+    &:hover {
+      border-color: $color;
+    }
+    &-focused {
+      border-color: $color;
+      box-shadow: 0 0 0 1px $color;
+    }
+  }
   &-info {
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +34,11 @@
     &__text {
       font-size: 16px;
       font-weight: 300;
-      color: $blackText;
+      color: $greyText;
+    }
+    &__image {
+      font-size: 48px;
+      color: $greyText;
     }
   }
   &-link {
@@ -55,7 +81,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 8px;
+        margin-top: 4px;
+        height: 16px;
       }
       &__partner {
         margin: 0;
@@ -76,7 +103,7 @@
         font-weight: 300;
         text-overflow: ellipsis;
         margin: 0;
-        height: 16px;
+        height: 20px;
         width: 80%;
         overflow: hidden;
         text-decoration: none;
@@ -90,7 +117,7 @@
         color: $white;
         width: 16px;
         height: 16px;
-        background-color: $yellow;
+        background-color: $color;
         border-radius: 50%;
         text-decoration: none;
       }

@@ -49,8 +49,8 @@ const Messages = ({
               <Message
                 {...item}
                 isMe={user._id === item.user._id}
-                onRemoveMessage={onRemoveMessage.bind(this, item._id)}
-                setPreviewImage={setPreviewImage}
+                // onRemoveMessage={onRemoveMessage.bind(this, item._id)}
+                // setPreviewImage={setPreviewImage}
                 key={item._id}
               />
             ))

@@ -1,0 +1,13 @@
+@import "../../styles/variable.scss";
+
+.home {
+  height: 100%;
+}
+.chat {
+  display: flex;
+
+  &__dialog {
+    &-input {
+    }
+  }
+}
