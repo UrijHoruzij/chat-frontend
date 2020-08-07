@@ -14,13 +14,13 @@
   &__content {
     display: flex;
     flex-direction: column;
-    max-width: 40%;
+    max-width: 55%;
   }
   &__bubble {
     display: flex;
     border-radius: 15px 15px 15px 0;
     background-color: $color;
-    overflow: hidden;
+    position: relative;
   }
   &__text {
     font-weight: 300;
@@ -33,14 +33,33 @@
   &__info {
     display: flex;
   }
+  &__btn-remove {
+    z-index: 25;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $color;
+    &-icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
   &__attachments {
     display: flex;
     align-items: center;
     &-item {
+      position: relative;
       width: 48px;
       height: 48px;
       border-radius: 5px;
-      overflow: hidden;
       margin-top: 16px;
       margin-right: 16px;
       img {
@@ -60,9 +79,14 @@
     padding: 16px;
     position: relative;
     overflow: hidden;
+    border-radius: 15px 15px 15px 0;
+    &--isme {
+      border-radius: 15px 15px 0 15px;
+    }
     &-progress {
       left: 0;
       top: 0;
+      overflow: hidden;
       position: absolute;
       background-color: $colorDark;
       height: 100%;

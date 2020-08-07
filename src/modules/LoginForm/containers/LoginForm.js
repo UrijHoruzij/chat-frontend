@@ -3,9 +3,9 @@ import { withFormik } from "formik";
 import LoginForm from "../components/LoginForm";
 
 import validateForm from "../../../utils/validate";
-// import { userActions } from "redux/actions";
+import { userActions } from "../../../redux/actions";
 
-// import store from "redux/store";
+import store from "../../../redux/store";
 
 const LoginFormContainer = withFormik({
   enableReinitialize: true,
@@ -21,17 +21,17 @@ const LoginFormContainer = withFormik({
     return errors;
   },
   handleSubmit: (values, { setSubmitting, props }) => {
-    // store
-    //   .dispatch(userActions.fetchUserLogin(values))
-    //   .then(({ status }) => {
-    //     if (status === "success") {
-    //       props.history.push("/");
-    //     }
-    //     setSubmitting(false);
-    //   })
-    //   .catch(() => {
-    //     setSubmitting(false);
-    //   });
+    store
+      .dispatch(userActions.fetchUserLogin(values))
+      .then(({ status }) => {
+        if (status === "success") {
+          props.history.push("/");
+        }
+        setSubmitting(false);
+      })
+      .catch(() => {
+        setSubmitting(false);
+      });
   },
   displayName: "LoginForm",
 })(LoginForm);

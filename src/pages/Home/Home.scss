@@ -2,11 +2,33 @@
 
 .home {
   height: 100%;
+  overflow: hidden;
+}
+.header {
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  border-bottom: 1px solid $line;
+  &__logo {
+    margin-left: 16px;
+    font-size: 24px;
+    font-weight: 300;
+    color: $blackText;
+  }
+  &__user {
+  }
 }
 .chat {
   display: flex;
-
+  width: 100%;
   &__dialog {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     &-input {
     }
   }

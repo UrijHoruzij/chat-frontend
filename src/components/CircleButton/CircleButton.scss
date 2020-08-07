@@ -1,8 +1,14 @@
 @import "../../styles/variable.scss";
 .button-circle {
+  padding: 0;
   border: none;
   outline: none;
   border-radius: 50%;
+  background-color: none;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: all 0.3s ease-in-out;
   &--small {
     width: 40px;
@@ -11,6 +17,7 @@
   &--medium {
     width: 56px;
     height: 56px;
+    font-size: 20px;
   }
   &--large {
     width: 72px;
@@ -18,11 +25,13 @@
   }
   &--color {
     background-color: $color;
+    color: $white;
     &:hover {
+      color: $white;
       background-color: $colorDark;
     }
   }
   &--border {
-    border: 1px solid $greyText;
+    border: 1px solid $color;
   }
 }

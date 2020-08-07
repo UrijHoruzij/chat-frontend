@@ -1,0 +1,133 @@
+@import "../../styles/variable.scss";
+
+.chat-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin-left: 24px;
+  margin-right: 32px;
+  .ant-btn:hover,
+  .ant-btn:focus {
+    color: $blackText;
+    border: none;
+  }
+  &__block {
+    display: flex;
+    align-items: center;
+  }
+  &__smile {
+    margin-right: 24px;
+    &-btn {
+      width: 24px;
+      height: 24px;
+      transition: all 0.3s ease-in-out;
+      color: $greyText;
+    }
+  }
+  &__emoji-picker {
+    position: relative;
+    .emoji-mart {
+      position: absolute;
+      bottom: 16px;
+    }
+    .emoji-mart-anchor-bar {
+      background-color: $color !important;
+    }
+    .emoji-mart-anchor {
+      color: $greyText !important;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $color !important;
+      }
+    }
+    .emoji-mart-anchor-selected {
+      color: $color !important;
+    }
+    .emoji-mart-scroll {
+      &::-webkit-scrollbar-track {
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: $greyText;
+      }
+    }
+  }
+
+  &__upload {
+    margin-right: 24px;
+    &-btn {
+      z-index: 10;
+      cursor: pointer;
+      color: $greyText;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $blackText;
+      }
+    }
+  }
+
+  &__form {
+    width: 80%;
+  }
+  &__textarea {
+    font-size: 14px;
+    font-weight: 400;
+    color: $blackText;
+    width: 100%;
+    max-height: 37px;
+    padding: 0;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: $greyLight;
+  }
+  .ant-input:focus,
+  .ant-input-focused {
+    border-color: $color;
+    box-shadow: 0 0 0 1px $color;
+  }
+  &__record-status {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    .stop-recording {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+      margin-left: 16px;
+      color: $greyText;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $blackText;
+      }
+    }
+  }
+  &__send {
+    margin-left: 24px;
+    &-btn {
+      width: 24px;
+      height: 24px;
+      color: $greyText;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: $blackText;
+      }
+    }
+  }
+  &__icon {
+    font-size: 24px;
+  }
+  &__attachments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    z-index: 15;
+  }
+}

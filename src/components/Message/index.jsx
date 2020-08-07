@@ -1,19 +1,71 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Popover } from "antd";
+import Icon, { CloseOutlined } from "@ant-design/icons";
+import { Emoji } from "emoji-mart";
+import reactStringReplace from "react-string-replace";
 
 import { convertCurrentTime, isAudio } from "../../utils/helpers";
 
-import { Avatar, Time, Button } from "../";
+import { Avatar, Time, CircleButton } from "../";
 
 import "./Message.scss";
 
-import waveSvg from "../../assets/wave.svg";
-import playSvg from "../../assets/play.svg";
-import pauseSvg from "../../assets/pause.svg";
+const waveSvg = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink"
+    width="110"
+    height="31"
+    viewBox="0 0 110 31"
+  >
+    <image
+      id="wave"
+      width="110"
+      height="31"
+      href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAAAfCAYAAAAGJfifAAABPElEQVRoge2XvRHCMAyFHzkPwCg03FHQsAsDsRFLUDICDRvQcGlsK4jIP8/RVzq27jnPluTd8XSBkgOAPYAHgNcPS7XzU1jESKGJm5ubGy+6tykaWeYG4A7gXGh+CosYKTRxc3Nz4yU0zPxjnNMBbhwpbhwpbhwpbhwpQZDN2PZbPRt60CHGkG4cY9tv9WzoQYcYQ7pxJRFPk7OMdONKIp4mZ5lAfPoZdZvVzon49DPqNqudrWpcbYarqVt5xw1XU/0BToobR4obR8pWmpPntzl5R19ICcSb0ui+RiNtWPuv5/Who01pYdS9VvO8vlWqHC511aaVcay3vBu8qyRFunHadGaR/syKd/SFT4cYQzJOm84s0p9Z8R5AhxjDUyUpbhwpbhwpbhwpUnOSQ+x2EvTQbVrEzc2t34EC+AAqEnFMhxnAlgAAAABJRU5ErkJggg=="
+    />
+  </svg>
+);
 
-const MessageAudio = ({ audioSrc }) => {
+const pauseSvg = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink"
+    width="17"
+    height="16"
+    viewBox="0 0 17 16"
+  >
+    <image
+      id="pause-solid"
+      width="17"
+      height="16"
+      href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAAAkUlEQVQ4je3UwQoBYRSG4cekuARpLkF2ynYuRNnLhYi7kBuQlBWxs1AuRbJFf0ZT89csrCzmXZ1zvrdveRqDYdbCHH0FT+wwy/c2FuiVnG24NzHCVEyGPc4YYxIZH+eQII2igm4+daKkIE2i0w/UJTF1Scx/ldwr8m/2qHBuoWSFSyl4YYNjvi9xLTnhFaxxegMyPBc18emuvAAAAABJRU5ErkJggg=="
+    />
+  </svg>
+);
+
+const playSvg = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink"
+    width="15"
+    height="17"
+    viewBox="0 0 15 17"
+  >
+    <image
+      id="play-solid"
+      width="15"
+      height="17"
+      href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAA30lEQVQ4jZ3SoUtDURTH8c90zaSgZVlMi3OCIuy/sIlgciiC0WoZmASDCgbL+uqCmDRp1WqyjCVZUFCuvAe6dzfe9dvuOb8vnHvurTTWWnM4xAfO8a4kMzjCCTp4wVaKvPDrXEMXd6gX0hE5xiaecIb5SH+qHJjFfnaV3Vi2UIiwiCs8oJkq5zRwj2sspcqBCnbwjOVUOScsceO/8iN6qfIQe1jFoFpox/nCJY6DlCfKyGHD7ezT/GHa2G/YxnpMnCR/4hQruMlGjhLGDm+W08fBWG0iQb7AK0a4LSP9gG+deyVe+y87agAAAABJRU5ErkJggg=="
+    />
+  </svg>
+);
+const WaveIcon = (props) => <Icon component={waveSvg} {...props} />;
+const PauseIcon = (props) => <Icon component={pauseSvg} {...props} />;
+const PlayIcon = (props) => <Icon component={playSvg} {...props} />;
+
+const MessageAudio = ({ audioSrc, isMe }) => {
   const audioElem = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -60,7 +112,9 @@ const MessageAudio = ({ audioSrc }) => {
   }, []);
 
   return (
-    <div className="message__audio">
+    <div
+      className={classNames("message__audio", { "message__audio--isme": isMe })}
+    >
       <audio ref={audioElem} src={audioSrc} preload="auto" />
       <div
         className="message__audio-progress"
@@ -70,22 +124,14 @@ const MessageAudio = ({ audioSrc }) => {
         <div className="message__audio-btn">
           <button onClick={togglePlay}>
             {isPlaying ? (
-              <img
-                className="message__audio-btn-icon"
-                src={pauseSvg}
-                alt="Pause"
-              ></img>
+              <PauseIcon className="message__audio-btn-icon" />
             ) : (
-              <img
-                className="message__audio-btn-icon"
-                src={playSvg}
-                alt="Play"
-              ></img>
+              <PlayIcon className="message__audio-btn-icon" />
             )}
           </button>
         </div>
         <div className="message__audio-wave">
-          <img src={waveSvg} alt="Wave svg" />
+          <WaveIcon />
         </div>
         <span className="message__audio-duration">
           {convertCurrentTime(currentTime)}
@@ -108,11 +154,29 @@ const Message = ({
   setPreviewImage,
 }) => {
   const renderAttachment = (item) => {
-    return (
-      <div className="message__attachments-item">
-        <img src={item.url} alt={item.filename} />
-      </div>
-    );
+    if (item.ext !== "webm") {
+      return (
+        <div
+          key={item._id}
+          onClick={() => setPreviewImage(item.url)}
+          className="message__attachments-item"
+        >
+          {isMe && (
+            <CircleButton
+              className="button--color message__btn-remove"
+              onClick={onRemoveMessage}
+            >
+              <CloseOutlined className="message__btn-remove-icon" />
+            </CircleButton>
+          )}
+          {/* <div className="message__attachments-item-overlay">
+              <Icon type="eye" style={{ color: "white", fontSize: 18 }} />
+            </div> */}
+
+          <img src={item.url} alt={item.filename} />
+        </div>
+      );
+    }
   };
 
   return (
@@ -132,25 +196,24 @@ const Message = ({
         <Avatar user={user} size="small" />
       </div>
       <div className="message__content">
-        <Popover
-          content={
-            <div>
-              <Button className="button--color" onClick={onRemoveMessage}>
-                Удалить сообщение
-              </Button>
-            </div>
-          }
-          trigger="click"
-        >
-          <div className="message__icon-actions">
-            <Button className="button--color"></Button>
-          </div>
-        </Popover>
-
         <div className="message__info">
           {(text || isTyping || audio) && (
             <div className="message__bubble">
-              {text && <p className="message__text">{text}</p>}
+              {isMe && (
+                <CircleButton
+                  className="button--color message__btn-remove"
+                  onClick={onRemoveMessage}
+                >
+                  <CloseOutlined className="message__btn-remove-icon" />
+                </CircleButton>
+              )}
+              {text && (
+                <p className="message__text">
+                  {reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                    <Emoji key={i} emoji={match} set="apple" size={20} />
+                  ))}
+                </p>
+              )}
               {isTyping && (
                 <div className="message__typing">
                   <span />
@@ -158,7 +221,7 @@ const Message = ({
                   <span />
                 </div>
               )}
-              {audio && <MessageAudio audioSrc={audio} />}
+              {audio && <MessageAudio isMe={isMe} audioSrc={audio.url} />}
             </div>
           )}
         </div>
@@ -179,7 +242,7 @@ const Message = ({
         )}
         {date && (
           <span className="message__date">
-            <Time date={date} />
+            <Time date={new Date(date)} />
           </span>
         )}
       </div>

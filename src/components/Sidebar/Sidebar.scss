@@ -1,0 +1,44 @@
+@import "../../styles/variable.scss";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
+  position: relative;
+  &__footer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translateY(-72px);
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+  &-btn-add {
+    font-size: 28px;
+  }
+}
+.add-dialog-form {
+  &__textarea {
+    resize: none;
+  }
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: $color;
+}
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: $color;
+  box-shadow: 0 0 0 1px $color;
+}
+.ant-input:hover {
+  border-color: $color;
+}
+.ant-input:focus {
+  border-color: $color;
+  box-shadow: 0 0 0 1px $color;
+}

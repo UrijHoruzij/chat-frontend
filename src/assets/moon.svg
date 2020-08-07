@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="25" viewBox="0 0 23 25">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.75;
+      }
+    </style>
+  </defs>
+  <image id="moon-solid" class="cls-1" width="23" height="25" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAZCAYAAADaILXQAAABoUlEQVRIiZ2WSytFURiGHydRRy5FLnEGIlNjE50/QLmNRDEz8wuUgctMKQMZiFJGfgCdKAMxEEVhYiCFDJhQ7n1ZJ3vvb++11vaMdu+71ts+317r+07JbmEbTxqAHFAFfAFPwBXwkrS9VClh6oE+IA80Khc2gWWlOsLLgTFgwLJmA1hTqiNc3nYeaFXOL9/AHLCjHEe4BC8BdWrlHys+wUIm8FwGzDqCL0ydvQiGjwJtjk3rpiypwmuBIeWGeQYOlWqhGN5jymLj3Jzv1OHdytHcKcWBhFdajl2QN6U4yJgr7UP1f8IrlBpPR6xqQcI/ku0QckyblGohY7qbL4Npw2+Ad+XE0+tx0ULhUpYT5cQjvWgaqIl1Y8IF74kBNAOLQItyEsL3gHvlJpMz3XEYyCatCo65LtMV0yJj7gg4Ax5NY5POehzs5wfAFtCfMjxrxmA+ok9lIoIMioLanh4p2X50EknXmwFugREpW8rYV2ChOKmiby5IzVaBCeDUM1T2yC8eD45A21+LS2ASaDf17DTHT874p7nZ1/LhTPBDaDfwA5IaRg9/CA4UAAAAAElFTkSuQmCC"/>
+</svg>

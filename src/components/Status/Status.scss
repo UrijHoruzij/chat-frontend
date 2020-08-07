@@ -1,0 +1,25 @@
+@import "../../styles/variable.scss";
+
+.status {
+  margin-left: 24px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  &__username {
+    font-size: 24px;
+    font-weight: 300;
+    color: $blackText;
+  }
+  &__online {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $grey;
+    margin-left: 16px;
+    &--isOnline {
+      background-color: $green;
+    }
+  }
+}

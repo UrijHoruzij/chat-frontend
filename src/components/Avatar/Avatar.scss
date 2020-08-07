@@ -15,6 +15,17 @@
     max-width: 232px;
     max-height: 232px;
   }
+  &--symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 300;
+    color: $white;
+  }
   &__img {
     border-radius: 50%;
     overflow: hidden;

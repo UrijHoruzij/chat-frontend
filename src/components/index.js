@@ -9,3 +9,5 @@ export { default as Time } from "./Time";
 export { default as ChatInput } from "./ChatInput";
 export { default as Status } from "./Status";
 export { default as Sidebar } from "./Sidebar";
+export { default as RightSidebar } from "./RightSidebar";
+export { default as UploadFiles } from "./UploadFiles";

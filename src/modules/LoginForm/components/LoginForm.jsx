@@ -65,7 +65,7 @@ const LoginForm = (props) => {
               disabled={isSubmitting}
               onClick={handleSubmit}
               size="large"
-              className="button--color form-button"
+              className="button button--color form-button"
             >
               Войти в аккаунт
             </Button>

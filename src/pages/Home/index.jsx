@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { withRouter } from "react-router";
-import { Messages, ChatInput, Status, Sidebar } from "../../components";
-// import { connect } from 'react-redux';
+import { RightSidebar } from "../../components";
 
+import { Sidebar, Status, Messages, ChatInput } from "../../containers";
+import { connect } from "react-redux";
+import { CircleButton, Avatar } from "../../components";
 import "./Home.scss";
 
-// import { dialogsActions } from 'redux/actions';
+import { dialogsActions } from "../../redux/actions";
 
 const Home = (props) => {
   const { setCurrentDialogId, user } = props;
@@ -17,6 +19,12 @@ const Home = (props) => {
 
   return (
     <section className="home">
+      <div className="header">
+        <div className="header__logo">Чатик</div>
+        <div className="header__user">
+          <CircleButton>{user && <Avatar user={user}></Avatar>}</CircleButton>
+        </div>
+      </div>
       <div className="chat">
         <Sidebar />
         {user && (
@@ -28,12 +36,12 @@ const Home = (props) => {
             </div>
           </div>
         )}
+        <RightSidebar />
       </div>
     </section>
   );
 };
 
-export default Home;
-// export default withRouter(
-//   connect(({ user }) => ({ user: user.data }), dialogsActions)(Home)
-// );
+export default withRouter(
+  connect(({ user }) => ({ user: user.data }), dialogsActions)(Home)
+);
