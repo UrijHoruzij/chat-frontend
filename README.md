@@ -1,6 +1,16 @@
+![GitHub](https://img.shields.io/github/license/UrijHoruzij/Chat) ![GitHub package.json version](https://img.shields.io/github/package-json/v/UrijHoruzij/Chat)
+
 ## Клиентская часть чата
 
-## Stack:
+#### Главная страница
+
+![Главная страница](https://github.com/UrijHoruzij/Chat/preview/Chat.jpg)
+
+#### Cтраница входа
+
+![Cтраница входа](https://github.com/UrijHoruzij/Chat/preview/Login.jpg)
+
+## Стек технологий:
 
 - ReactJS
 - Redux
