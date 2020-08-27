@@ -10,4 +10,6 @@ export default {
       },
     });
   },
+  delete: () => axios.delete("/files"),
+  get: (user) => axios.get("/files", { user }),
 };

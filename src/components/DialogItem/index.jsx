@@ -34,23 +34,20 @@ const renderLastMessage = (message, userId) => {
   let text = "";
   if (!message.text && message.attachments && message.attachments.length) {
     text = "прикрепленный файл";
-  } else if (message.audio) {
-    text = "аудиозапись";
-  } else {
-    text = message.text;
   }
-
-  return `${message.user._id === userId ? "Вы: " : ""}${text}`;
+  if (message.audio) {
+    text = "аудиозапись";
+  }
+  return `${text}`;
 };
 
 const DialogsItem = ({
   _id,
   isReaded,
-  date,
-  text,
   isMe,
   currentDialogId,
   partner,
+  author,
   lastMessage,
   userId,
 }) => {
@@ -63,12 +60,16 @@ const DialogsItem = ({
           })}
         >
           <div className="dialogs-item__avatar">
-            <Avatar user={partner} size="small" />
+            {partner._id === userId ? (
+              <Avatar user={author} size="small" />
+            ) : (
+              <Avatar user={partner} size="small" />
+            )}
           </div>
           <div className="dialogs-item-content">
             <div className="dialogs-item-content__partner-and-date">
               <h3 className="dialogs-item-content__partner">
-                {partner.fullname}
+                {partner._id === userId ? author.fullname : partner.fullname}
               </h3>
               <span className="dialogs-item-content__date">
                 {getMessageTime(getUTCDate(lastMessage.date))}
@@ -76,6 +77,14 @@ const DialogsItem = ({
             </div>
             <div className="dialogs-item-content__message-and-not-readed">
               <p className="dialogs-item-content__last-message">
+                {lastMessage.user._id === userId ? "Вы: " : ""}
+                {reactStringReplace(
+                  lastMessage.text,
+                  /:(.+?):/g,
+                  (match, i) => (
+                    <Emoji key={i} emoji={match} set="apple" size={16} />
+                  )
+                )}
                 {renderLastMessage(lastMessage, userId)}
               </p>
               {lastMessage.count > 0 && (

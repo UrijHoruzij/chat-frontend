@@ -15,7 +15,10 @@ const Messages = ({
   user,
   isLoading,
   removeMessageById,
+  dialog,
+  attachments,
 }) => {
+  const [removeMessage, setRemoveMessage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
   let typingTimeoutId = null;
@@ -35,8 +38,16 @@ const Messages = ({
   };
 
   useEffect(() => {
-    socket.on("DIALOGS:TYPING", toggleIsTyping);
-  }, []);
+    socket.on("DIALOGS:TYPING", (data) => {
+      console.log(dialog);
+      console.log(data);
+      // eslint-disable-next-line eqeqeq
+      if (data.dialogId === dialog) {
+        toggleIsTyping();
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dialog]);
 
   useEffect(() => {
     if (currentDialog) {
@@ -46,12 +57,16 @@ const Messages = ({
     socket.on("SERVER:NEW_MESSAGE", onNewMessage);
 
     return () => socket.removeListener("SERVER:NEW_MESSAGE", onNewMessage);
-  }, [currentDialog]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDialog, fetchMessages]);
 
   useEffect(() => {
-    if (items.length > 0) {
-      messagesRef.current.scrollTo(0, 999999);
+    if (items.length > 0 && currentDialog !== "") {
+      if (typeof messagesRef.current.scrollTo === "function") {
+        messagesRef.current.scrollTo(0, 999999);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, isTyping]);
 
   if (!currentDialog) {
@@ -71,9 +86,11 @@ const Messages = ({
       onRemoveMessage={removeMessageById}
       setPreviewImage={setPreviewImage}
       previewImage={previewImage}
+      setRemoveMessage={setRemoveMessage}
+      removeMessage={removeMessage}
       isTyping={isTyping}
       partner={
-        user._id !== currentDialog.partner._id
+        user._id === currentDialog.partner._id
           ? currentDialog.author
           : currentDialog.partner
       }
@@ -88,6 +105,7 @@ export default connect(
     isLoading: messages.isLoading,
     attachments: attachments.items,
     user: user.data,
+    dialog: dialogs.currentDialogId,
   }),
   messagesActions
 )(Messages);

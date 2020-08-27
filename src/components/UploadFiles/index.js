@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Upload, Modal } from "antd";
+import { Upload } from "antd";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -22,10 +22,13 @@ const UploadFiles = ({ attachments, removeAttachment }) => {
       ...state,
       fileList: attachments,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attachments]);
 
+  // eslint-disable-next-line no-unused-vars
   const handleCancel = () => setState({ ...state, previewVisible: false });
 
+  // eslint-disable-next-line no-unused-vars
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -45,22 +48,22 @@ const UploadFiles = ({ attachments, removeAttachment }) => {
     });
 
   return (
-    <div className="clearfix">
+    <div>
       <Upload
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={state.fileList}
-        onPreview={handlePreview}
+        // onPreview={handlePreview}
         onChange={handleChange}
         onRemove={(file) => removeAttachment(file)}
       />
-      <Modal
+      {/* <Modal
         visible={state.previewVisible}
-        footer={null}
         onCancel={handleCancel}
+        btnClose={true}
       >
         <img alt="example" style={{ width: "100%" }} src={state.previewImage} />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

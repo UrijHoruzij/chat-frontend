@@ -1,15 +1,23 @@
 @import "../../styles/variable.scss";
 .button-circle {
-  padding: 0;
   border: none;
   outline: none;
   border-radius: 50%;
-  background-color: none;
-  display: block;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: none;
+  &__progress-circle {
+    width: 24px;
+    height: 24px;
+    display: block;
+    border-left: 2px solid $white;
+    border-top: 2px solid $white;
+    border-radius: 50%;
+    animation: Rotating 1s infinite ease-in-out;
+  }
   &--small {
     width: 40px;
     height: 40px;
@@ -17,13 +25,12 @@
   &--medium {
     width: 56px;
     height: 56px;
-    font-size: 20px;
   }
   &--large {
     width: 72px;
     height: 72px;
   }
-  &--color {
+  &--fill {
     background-color: $color;
     color: $white;
     &:hover {
@@ -32,6 +39,27 @@
     }
   }
   &--border {
+    background-color: $white;
     border: 1px solid $color;
+    color: $color;
+    &:hover {
+      color: $white;
+      border-color: $colorDark;
+      background-color: $colorDark;
+    }
+  }
+  &--disabled {
+    color: $greyLight;
+    background-color: $grey;
+    cursor: not-allowed;
+    &:hover {
+      color: $greyLight;
+      background-color: $grey;
+    }
+  }
+}
+@keyframes Rotating {
+  to {
+    transform: rotate(360deg);
   }
 }

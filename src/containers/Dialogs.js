@@ -35,24 +35,27 @@ const Dialogs = ({
     if (items.length) {
       onChangeInput();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   useEffect(() => {
     fetchDialogs();
 
+    socket.on("SERVER:USER_ONLINE", fetchDialogs);
     socket.on("SERVER:DIALOG_CREATED", fetchDialogs);
     socket.on("SERVER:NEW_MESSAGE", fetchDialogs);
+    socket.on("SERVER:REMOVE_MESSAGE", fetchDialogs);
     socket.on("SERVER:MESSAGES_READED", updateReadedStatus);
     return () => {
       socket.removeListener("SERVER:DIALOG_CREATED", fetchDialogs);
       socket.removeListener("SERVER:NEW_MESSAGE", fetchDialogs);
     };
-  }, []);
+  }, [fetchDialogs, updateReadedStatus]);
 
   return (
     <BaseDialogs
       userId={userId}
-      items={filtred} //
+      items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
       currentDialogId={currentDialogId}

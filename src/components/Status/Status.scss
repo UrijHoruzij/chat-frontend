@@ -2,14 +2,19 @@
 
 .status {
   margin-left: 24px;
-  margin-top: 16px;
+  margin-top: 24px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+  position: relative;
+  &__block {
+    display: flex;
+    align-items: center;
+  }
   &__username {
     font-size: 24px;
     font-weight: 300;
-    color: $blackText;
+    color: $black;
   }
   &__online {
     display: block;
@@ -21,5 +26,10 @@
     &--isOnline {
       background-color: $green;
     }
+  }
+  &__remove {
+    position: absolute;
+    right: 24px;
+    cursor: pointer;
   }
 }

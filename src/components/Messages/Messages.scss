@@ -2,7 +2,7 @@
 
 .messages {
   width: 100%;
-  height: 70vh;
+  height: calc(100vh - 211px);
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 0;
@@ -15,7 +15,7 @@
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: $greyText;
+    background-color: $greyDark;
   }
   &--loading {
     display: flex;
@@ -34,38 +34,7 @@
     &__text {
       font-size: 16px;
       font-weight: 300;
-      color: $blackText;
+      color: $black;
     }
-  }
-}
-.spinner {
-  animation: rotate 2s linear infinite;
-  z-index: 2;
-  width: 50px;
-  height: 50px;
-}
-.path {
-  stroke: $color;
-  stroke-linecap: round;
-  animation: dash 1.5s ease-in-out infinite;
-}
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
   }
 }

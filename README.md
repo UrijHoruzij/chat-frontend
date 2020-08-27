@@ -4,11 +4,18 @@
 
 #### Главная страница
 
-![Главная страница](https://github.com/UrijHoruzij/Chat/preview/Chat.jpg)
+![Главная страница](https://github.com/UrijHoruzij/Chat/blob/master/preview/Chat.jpg)
 
 #### Cтраница входа
 
-![Cтраница входа](https://github.com/UrijHoruzij/Chat/preview/Login.jpg)
+![Cтраница входа](https://github.com/UrijHoruzij/Chat/blob/master/preview/Login.jpg)
+
+## Планы по изменению:
+
+- Добавление Socket.IO File Upload.
+- Добавить галерею изображений, которые загрузил пользователь.
+- Создать собственные компоненты формы.
+- Создать библиотеку компонентов.
 
 ## Стек технологий:
 

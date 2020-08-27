@@ -18,7 +18,7 @@
 
     &::-webkit-scrollbar-thumb {
       border-radius: 4px;
-      background-color: $greyText;
+      background-color: $greyDark;
     }
   }
   &__search {
@@ -30,7 +30,7 @@
       border-radius: 5px;
       font-size: 18px;
       font-weight: 300;
-      color: $greyText;
+      color: $greyDark;
       border: none;
       input {
         background-color: $grey;
@@ -63,11 +63,11 @@
     &__text {
       font-size: 16px;
       font-weight: 300;
-      color: $greyText;
+      color: $greyDark;
     }
     &__image {
       font-size: 48px;
-      color: $greyText;
+      color: $greyDark;
     }
   }
   &-link {
@@ -105,7 +105,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      width: 85%;
+      width: calc(100% - 56px);
       &__partner-and-date {
         display: flex;
         justify-content: space-between;
@@ -122,17 +122,17 @@
         margin: 0;
         font-size: 18px;
         font-weight: 300;
-        color: $blackText;
+        color: $black;
         text-decoration: none;
       }
       &__date {
         font-size: 14px;
         font-weight: 400;
-        color: $greyText;
+        color: $greyDark;
         text-decoration: none;
       }
       &__last-message {
-        color: $greyText;
+        color: $greyDark;
         font-size: 14px;
         font-weight: 300;
         text-overflow: ellipsis;

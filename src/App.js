@@ -12,7 +12,7 @@ const App = (props) => {
         <Route exact path={["/signin", "/signup"]} component={Auth} />
         <Route
           path="/"
-          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)}
+          render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} //
         />
       </Switch>
     </div>

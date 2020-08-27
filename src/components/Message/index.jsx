@@ -7,7 +7,7 @@ import reactStringReplace from "react-string-replace";
 
 import { convertCurrentTime, isAudio } from "../../utils/helpers";
 
-import { Avatar, Time, CircleButton } from "../";
+import { Avatar, Time, CircleButton, Modal, Button } from "../";
 
 import "./Message.scss";
 
@@ -105,17 +105,17 @@ const MessageAudio = ({ audioSrc, isMe }) => {
       false
     );
     audioElem.current.addEventListener("timeupdate", () => {
+      console.log(audioElem.current.duration);
       const duration = (audioElem.current && audioElem.current.duration) || 0;
       setCurrentTime(audioElem.current.currentTime);
       setProgress((audioElem.current.currentTime / duration) * 100);
     });
   }, []);
-
   return (
     <div
       className={classNames("message__audio", { "message__audio--isme": isMe })}
     >
-      <audio ref={audioElem} src={audioSrc} preload="auto" />
+      <audio ref={audioElem} src={audioSrc} preload="metadata" />
       <div
         className="message__audio-progress"
         style={{ width: progress + "%" }}
@@ -152,6 +152,8 @@ const Message = ({
   isReaded,
   onRemoveMessage,
   setPreviewImage,
+  setRemoveMessage,
+  removeMessage,
 }) => {
   const renderAttachment = (item) => {
     if (item.ext !== "webm") {
@@ -164,14 +166,14 @@ const Message = ({
           {isMe && (
             <CircleButton
               className="button--color message__btn-remove"
-              onClick={onRemoveMessage}
+              onClick={setRemoveMessage}
             >
               <CloseOutlined className="message__btn-remove-icon" />
             </CircleButton>
           )}
           {/* <div className="message__attachments-item-overlay">
-              <Icon type="eye" style={{ color: "white", fontSize: 18 }} />
-            </div> */}
+            <Icon type="eye" style={{ color: "white", fontSize: 18 }} />
+          </div> */}
 
           <img src={item.url} alt={item.filename} />
         </div>
@@ -202,7 +204,7 @@ const Message = ({
               {isMe && (
                 <CircleButton
                   className="button--color message__btn-remove"
-                  onClick={onRemoveMessage}
+                  onClick={setRemoveMessage}
                 >
                   <CloseOutlined className="message__btn-remove-icon" />
                 </CircleButton>
@@ -246,6 +248,33 @@ const Message = ({
           </span>
         )}
       </div>
+
+      <Modal
+        visible={!!removeMessage}
+        title="Вы действительно хотите удалить сообщение?"
+        onCancel={() => setRemoveMessage(null)}
+        footer={[
+          <Button
+            size="small"
+            styleBtn="border"
+            key="back"
+            onClick={() => setRemoveMessage(null)}
+          >
+            Закрыть
+          </Button>,
+          <Button
+            styleBtn="fill"
+            size="small"
+            key="submit"
+            onClick={() => {
+              onRemoveMessage();
+              setRemoveMessage(null);
+            }}
+          >
+            Удалить
+          </Button>,
+        ]}
+      ></Modal>
     </div>
   );
 };
@@ -256,10 +285,9 @@ Message.defaultProps = {
 
 Message.propTypes = {
   text: PropTypes.string,
-  date: PropTypes.string,
   user: PropTypes.object,
   attachments: PropTypes.array,
-  audio: PropTypes.string,
+  audio: PropTypes.object,
   isMe: PropTypes.bool,
   isReaded: PropTypes.bool,
   isTyping: PropTypes.bool,

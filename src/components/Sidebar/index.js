@@ -1,8 +1,7 @@
 import React from "react";
-import { Modal, Select, Input, Form } from "antd";
-import Icon from "@ant-design/icons";
+import { Select, Input, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { CircleButton, Button } from "../";
+import { CircleButton, Button, Modal } from "../";
 import { Dialogs } from "../../containers";
 
 import "./Sidebar.scss";
@@ -34,7 +33,9 @@ const Sidebar = ({
       <Dialogs userId={user && user._id} />
       <div className="sidebar__footer">
         <CircleButton
-          className="sidebar-btn-add button-circle--color button-circle--medium"
+          className="sidebar-btn-add"
+          styleBtn="fill"
+          size="medium"
           onClick={onShow}
         >
           <PlusOutlined />
@@ -46,15 +47,12 @@ const Sidebar = ({
         visible={visible}
         onCancel={onClose}
         footer={[
-          <Button
-            className="button--border button--small"
-            key="back"
-            onClick={onClose}
-          >
+          <Button size="small" styleBtn="border" key="back" onClick={onClose}>
             Закрыть
           </Button>,
           <Button
-            className="button--color button--small"
+            styleBtn="fill"
+            size="small"
             disabled={!messageText}
             key="submit"
             loading={isLoading}

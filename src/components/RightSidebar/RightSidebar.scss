@@ -2,5 +2,87 @@
 
 .right-sidebar {
   width: 25%;
-  height: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid $line;
+  &__avatar {
+    cursor: pointer;
+  }
+  &__upload-field {
+    cursor: pointer;
+  }
+  &__profile-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 48px;
+    padding-top: 40px;
+    margin-right: 16px;
+    padding-left: 16px;
+    border-bottom: 1px solid $line;
+  }
+  &__fullname {
+    margin-top: 48px;
+    font-size: 24px;
+    font-weight: 400;
+    color: $black;
+  }
+  &__menu {
+    margin-top: 64px;
+    width: 80%;
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 36px;
+      margin-top: 16px;
+      cursor: pointer;
+      &__text {
+        list-style: none;
+        font-size: 16px;
+        font-weight: 400;
+        color: $black;
+      }
+      &__img {
+        font-size: 24px;
+        color: $black;
+      }
+    }
+  }
+  &__settings {
+    display: flex;
+    flex-direction: column;
+  }
+  &__shared {
+    &-all {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    &-title {
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      font-weight: 400;
+      color: $black;
+    }
+    &-block {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &-documents {
+      width: 352px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 }

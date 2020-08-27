@@ -62,10 +62,12 @@ const LoginForm = (props) => {
           <Form.Item className="form-item">
             {isSubmitting && !isValid && <span>Ошибка!</span>}
             <Button
+              type="submit"
               disabled={isSubmitting}
               onClick={handleSubmit}
+              styleBtn="fill"
               size="large"
-              className="button button--color form-button"
+              className="form-button"
             >
               Войти в аккаунт
             </Button>

@@ -1,29 +1,37 @@
 import React, { useEffect } from "react";
 import { withRouter } from "react-router";
-import { RightSidebar } from "../../components";
-
-import { Sidebar, Status, Messages, ChatInput } from "../../containers";
+import {
+  Sidebar,
+  RightSidebar,
+  Status,
+  Messages,
+  ChatInput,
+} from "../../containers";
 import { connect } from "react-redux";
-import { CircleButton, Avatar } from "../../components";
-import "./Home.scss";
 
+// import { CircleButton, Avatar } from "../../components";
 import { dialogsActions } from "../../redux/actions";
+
+import "./Home.scss";
 
 const Home = (props) => {
   const { setCurrentDialogId, user } = props;
+
   useEffect(() => {
-    const { pathname } = props.location;
+    const pathname = props.location.pathname;
     const dialogId = pathname.split("/").pop();
     setCurrentDialogId(dialogId);
-  }, [props.location.pathname]);
+  }, [props.location.pathname, setCurrentDialogId]);
 
   return (
     <section className="home">
       <div className="header">
         <div className="header__logo">Чатик</div>
-        <div className="header__user">
-          <CircleButton>{user && <Avatar user={user}></Avatar>}</CircleButton>
-        </div>
+        {/* <div className="header__user">
+          <CircleButton size="small" className="header__user-btn">
+            {user && <Avatar user={user} size="small"></Avatar>}
+          </CircleButton>
+        </div> */}
       </div>
       <div className="chat">
         <Sidebar />
@@ -36,7 +44,7 @@ const Home = (props) => {
             </div>
           </div>
         )}
-        <RightSidebar />
+        {user && <RightSidebar />}
       </div>
     </section>
   );

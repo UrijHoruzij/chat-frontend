@@ -1,7 +1,7 @@
 @import "../../styles/variable.scss";
 
 .home {
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 .header {
@@ -16,9 +16,12 @@
     margin-left: 16px;
     font-size: 24px;
     font-weight: 300;
-    color: $blackText;
+    color: $black;
   }
   &__user {
+    &-btn {
+      padding: 0;
+    }
   }
 }
 .chat {
@@ -27,7 +30,6 @@
   &__dialog {
     width: 50%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     &-input {
     }

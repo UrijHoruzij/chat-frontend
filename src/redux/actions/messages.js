@@ -1,4 +1,5 @@
-import { messagesApi } from "../../utils/api";
+import { userActions } from "./";
+import socket from "../../core/socket";
 
 const Actions = {
   setMessages: (items) => ({
@@ -8,7 +9,6 @@ const Actions = {
   addMessage: (message) => (dispatch, getState) => {
     const { dialogs } = getState();
     const { currentDialogId } = dialogs;
-
     if (currentDialogId === message.dialog._id) {
       dispatch({
         type: "MESSAGES:ADD_MESSAGE",
@@ -17,37 +17,75 @@ const Actions = {
     }
   },
   fetchSendMessage: ({ text, dialogId, attachments, audio }) => (dispatch) => {
-    return messagesApi.send(text, dialogId, attachments, audio);
+    socket.emit("USER:CREATE_MESSAGE", {
+      token: window.localStorage.token,
+      text,
+      dialogId,
+      attachments,
+      audio,
+    });
+    socket.on("USER:CREATE_MESSAGE", (data) => {
+      if (data.status === 500) {
+      }
+      if (data.status === 404) {
+      }
+      if (data.status === 401) {
+        dispatch(userActions.setIsAuth(false));
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+      }
+    });
   },
   setIsLoading: (bool) => ({
     type: "MESSAGES:SET_IS_LOADING",
     payload: bool,
   }),
   removeMessageById: (id) => (dispatch) => {
-    if (window.confirm("Вы действительно хотите удалить сообщение?")) {
-      messagesApi
-        .removeById(id)
-        .then(({ data }) => {
-          dispatch({
-            type: "MESSAGES:REMOVE_MESSAGE",
-            payload: id,
-          });
-        })
-        .catch(() => {
-          dispatch(Actions.setIsLoading(false));
+    socket.emit("USER:REMOVE_MESSAGE", {
+      token: window.localStorage.token,
+      id,
+    });
+    socket.on("USER:REMOVE_MESSAGE", (data) => {
+      if (data.status === 500) {
+      }
+      if (data.status === 404) {
+      }
+      if (data.status === 403) {
+      }
+      if (data.status === 401) {
+        dispatch(userActions.setIsAuth(false));
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        dispatch({
+          type: "MESSAGES:REMOVE_MESSAGE",
+          payload: id,
         });
-    }
+      }
+    });
   },
+
   fetchMessages: (dialogId) => (dispatch) => {
     dispatch(Actions.setIsLoading(true));
-    messagesApi
-      .getAllByDialogId(dialogId)
-      .then(({ data }) => {
-        dispatch(Actions.setMessages(data));
-      })
-      .catch(() => {
-        dispatch(Actions.setIsLoading(false));
-      });
+    socket.emit("USER:GET_MESSAGES", {
+      token: window.localStorage.token,
+      dialogId,
+    });
+    socket.on("USER:GET_MESSAGES", (data) => {
+      if (data.status === 404) {
+      }
+      if (data.status === 401) {
+        dispatch(userActions.setIsAuth(false));
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        dispatch(Actions.setMessages(data.messages));
+      }
+    });
   },
 };
 

@@ -1,5 +1,5 @@
-import { dialogsApi } from "../../utils/api";
 import socket from "../../core/socket";
+import { userActions } from "./";
 
 const Actions = {
   setDialogs: (items) => ({
@@ -20,9 +20,37 @@ const Actions = {
       payload: id,
     });
   },
+  removeDialog: (currentDialogId) => (dispatch) => {
+    socket.emit("USER:REMOVE_DIALOG", {
+      token: window.localStorage.token,
+      dialog: currentDialogId,
+    });
+    socket.on("USER:REMOVE_DIALOG", (data) => {
+      if (data.status === 404) {
+      }
+      if (data.status === 401) {
+        dispatch(userActions.setIsAuth(false));
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        this.fetchDialogs();
+      }
+    });
+  },
   fetchDialogs: () => (dispatch) => {
-    dialogsApi.getAll().then(({ data }) => {
-      dispatch(Actions.setDialogs(data));
+    socket.emit("USER:GET_DIALOGS", { token: window.localStorage.token });
+    socket.on("USER:GET_DIALOGS", (data) => {
+      if (data.status === 404) {
+      }
+      if (data.status === 401) {
+        dispatch(userActions.setIsAuth(false));
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        dispatch(Actions.setDialogs(data.dialogs));
+      }
     });
   },
 };

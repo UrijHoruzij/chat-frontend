@@ -9,7 +9,7 @@ import { messagesActions, attachmentsActions } from "../redux/actions";
 
 const ChatInput = (props) => {
   const {
-    dialogs: { currentDialogId },
+    currentDialogId,
     attachments,
     fetchSendMessage,
     setAttachments,
@@ -56,11 +56,13 @@ const ChatInput = (props) => {
     recorder.ondataavailable = (e) => {
       const file = new File([e.data], "audio.webm");
       setLoading(true);
-      filesApi.upload(file).then(({ data }) => {
-        sendAudio(data.file._id).then(() => {
+      filesApi
+        .upload(file)
+        .then(({ data }) => {
+          sendAudio(data.file._id);
           setLoading(false);
-        });
-      });
+        })
+        .catch((err) => {});
     };
   };
 
@@ -79,7 +81,7 @@ const ChatInput = (props) => {
   };
 
   const sendAudio = (audioId) => {
-    return fetchSendMessage({
+    fetchSendMessage({
       text: null,
       dialogId: currentDialogId,
       attachments: attachments.map((file) => file.uid),
@@ -90,7 +92,7 @@ const ChatInput = (props) => {
   const sendMessage = () => {
     if (isRecording) {
       mediaRecorder.stop();
-    } else if (value || attachments.length) {
+    } else if ((value || attachments.length) && currentDialogId) {
       fetchSendMessage({
         text: value,
         dialogId: currentDialogId,
@@ -178,7 +180,7 @@ const ChatInput = (props) => {
 
 export default connect(
   ({ dialogs, attachments, user }) => ({
-    dialogs,
+    currentDialogId: dialogs.currentDialogId,
     attachments: attachments.items,
     user: user.data,
   }),

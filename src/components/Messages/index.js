@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Modal } from "antd";
+import { Modal, Message } from "../";
 import { LoadingOutlined } from "@ant-design/icons";
-import Message from "../Message";
 
 import "./Messages.scss";
 
@@ -15,6 +14,8 @@ const Messages = ({
   partner,
   isTyping,
   previewImage,
+  removeMessage,
+  setRemoveMessage,
   setPreviewImage,
   onRemoveMessage,
 }) => {
@@ -37,6 +38,8 @@ const Messages = ({
               <Message
                 {...item}
                 isMe={user._id === item.user._id}
+                removeMessage={removeMessage}
+                setRemoveMessage={setRemoveMessage}
                 onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                 setPreviewImage={setPreviewImage}
                 key={item._id}
@@ -57,8 +60,15 @@ const Messages = ({
           visible={!!previewImage}
           onCancel={() => setPreviewImage(null)}
           footer={null}
+          btnClose={true}
+          isImage={true}
         >
-          <img src={previewImage} style={{ width: "100%" }} alt="Preview" />
+          <img
+            className="modal-block__image"
+            src={previewImage}
+            style={{ width: "100%" }}
+            alt="Preview"
+          />
         </Modal>
       </div>
     </div>

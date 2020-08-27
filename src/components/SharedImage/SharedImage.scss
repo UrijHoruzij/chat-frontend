@@ -1,0 +1,13 @@
+@import "../../styles/variable.scss";
+
+.shared-document {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 8px;
+  overflow: hidden;
+  object-fit: cover;
+}

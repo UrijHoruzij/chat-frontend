@@ -106,10 +106,12 @@ const RegisterForm = (props) => {
               <Form.Item className="form-item">
                 {isSubmitting && !isValid && <span>Ошибка!</span>}
                 <Button
+                  type="submit"
                   disabled={isSubmitting}
                   onClick={handleSubmit}
+                  styleBtn="fill"
                   size="large"
-                  className="button--color form-button"
+                  className="form-button"
                 >
                   Зарегистрироваться
                 </Button>

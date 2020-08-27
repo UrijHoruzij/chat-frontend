@@ -4,24 +4,21 @@
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 100%;
+  height: calc(100vh - 200px);
   position: relative;
   &__footer {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    transform: translateY(-72px);
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
   }
   &-btn-add {
+    z-index: 50;
     font-size: 28px;
   }
 }
 .add-dialog-form {
+  width: 450px;
   &__textarea {
     resize: none;
   }

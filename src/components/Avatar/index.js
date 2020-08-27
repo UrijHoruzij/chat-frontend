@@ -5,16 +5,21 @@ import { generateAvatar } from "../../utils/helpers";
 
 import "./Avatar.scss";
 
-const Avatar = ({ user, size }) => {
+const Avatar = ({ user, size, onClick, className }) => {
   const { color } = generateAvatar(user._id);
   const firstChar = user.fullname[0].toUpperCase();
   return (
     <div
-      className={classNames("avatar", {
-        "avatar--small": size === "small",
-        "avatar--medium": size === "medium",
-        "avatar--large": size === "large",
-      })}
+      className={classNames(
+        "avatar",
+        {
+          "avatar--small": size === "small",
+          "avatar--medium": size === "medium",
+          "avatar--large": size === "large",
+        },
+        className
+      )}
+      onClick={onClick}
     >
       {user.avatar ? (
         <img
@@ -28,7 +33,11 @@ const Avatar = ({ user, size }) => {
         />
       ) : (
         <div
-          className="avatar--symbol"
+          className={classNames("avatar--symbol", {
+            "avatar--symbol-small": size === "small",
+            "avatar--symbol-medium": size === "medium",
+            "avatar--symbol-large": size === "large",
+          })}
           style={{
             background: `${color}`,
           }}
@@ -39,6 +48,7 @@ const Avatar = ({ user, size }) => {
       {user.isOnline && (
         <div
           className={classNames("avatar__is-online", {
+            "avatar__is-online--small": size === "small",
             "avatar__is-online--medium": size === "medium",
             "avatar__is-online--large": size === "large",
           })}
@@ -55,6 +65,7 @@ Avatar.defaulProps = {
 Avatar.propTypes = {
   user: PropTypes.object,
   size: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Avatar;

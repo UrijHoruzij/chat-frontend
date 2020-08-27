@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { userApi, dialogsApi } from "../utils/api";
+import { userActions } from "../redux/actions";
+import socket from "../core/socket";
 
 import { Sidebar } from "../components";
 
-const SidebarContainer = ({ user }) => {
+const SidebarContainer = ({ user, setIsAuth }) => {
   const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messageText, setMessagaText] = useState("");
@@ -22,27 +23,49 @@ const SidebarContainer = ({ user }) => {
 
   const onSearch = (value) => {
     setIsLoading(true);
-    userApi
-      .findUsers(value)
-      .then(({ data }) => {
-        setUsers(data);
+    socket.emit("USER:FIND", {
+      token: window.localStorage.token,
+      email: value,
+    });
+    socket.on("USER:FIND", (data) => {
+      if (data.status === 404) {
+      }
+      if (data.status === 401) {
         setIsLoading(false);
-      })
-      .catch(() => {
+        setIsAuth(false);
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        setUsers(data.result);
         setIsLoading(false);
-      });
+      }
+    });
   };
 
   const onAddDialog = () => {
-    dialogsApi
-      .create({
-        partner: selectedUserId,
-        text: messageText,
-      })
-      .then(onClose)
-      .catch(() => {
+    socket.emit("USER:CREATE_DIALOG", {
+      token: window.localStorage.token,
+      partner: selectedUserId,
+      text: messageText,
+    });
+    socket.on("USER:CREATE_DIALOG", (data) => {
+      if (data.status === 500) {
         setIsLoading(false);
-      });
+      }
+      if (data.status === 403) {
+        setIsLoading(false);
+      }
+      if (data.status === 401) {
+        setIsLoading(false);
+        setIsAuth(false);
+        delete window.localStorage.token;
+        delete window.localStorage.refreshToken;
+      }
+      if (data.status === 200) {
+        onClose();
+      }
+    });
   };
 
   const handleChangeInput = (value) => {
@@ -77,4 +100,7 @@ const SidebarContainer = ({ user }) => {
   );
 };
 
-export default connect(({ user }) => ({ user: user.data }))(SidebarContainer);
+export default connect(
+  ({ user }) => ({ user: user.data }),
+  userActions
+)(SidebarContainer);

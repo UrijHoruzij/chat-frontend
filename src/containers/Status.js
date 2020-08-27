@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Status as StatusBase } from "../components";
 import { connect } from "react-redux";
+import { dialogsActions } from "../redux/actions";
 
 const Status = ({ currentDialogId, user, dialogs }) => {
+  const [visible, setVisible] = useState(false);
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
+  const onShow = () => {
+    setVisible(true);
+  };
+
+  const onRemove = (currentDialogId) => {
+    dialogsActions.removeDialog(currentDialogId);
+  };
+
   if (!dialogs.length || !currentDialogId) {
     return null;
   }
@@ -19,7 +34,16 @@ const Status = ({ currentDialogId, user, dialogs }) => {
     partner = currentDialogObj.author;
   }
 
-  return <StatusBase online={partner.isOnline} fullname={partner.fullname} />;
+  return (
+    <StatusBase
+      online={partner.isOnline}
+      fullname={partner.fullname}
+      onShow={onShow}
+      onClose={onClose}
+      onRemove={onRemove}
+      visible={visible}
+    />
+  );
 };
 
 export default connect(({ dialogs, user }) => ({
