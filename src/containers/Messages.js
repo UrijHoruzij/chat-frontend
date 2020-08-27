@@ -15,7 +15,6 @@ const Messages = ({
   user,
   isLoading,
   removeMessageById,
-  dialog,
   attachments,
 }) => {
   const [removeMessage, setRemoveMessage] = useState(null);
@@ -39,15 +38,13 @@ const Messages = ({
 
   useEffect(() => {
     socket.on("DIALOGS:TYPING", (data) => {
-      console.log(dialog);
-      console.log(data);
       // eslint-disable-next-line eqeqeq
-      if (data.dialogId === dialog) {
+      if (currentDialog && data.dialogId == currentDialog._id) {
         toggleIsTyping();
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dialog]);
+  }, [currentDialog]);
 
   useEffect(() => {
     if (currentDialog) {
@@ -105,7 +102,6 @@ export default connect(
     isLoading: messages.isLoading,
     attachments: attachments.items,
     user: user.data,
-    dialog: dialogs.currentDialogId,
   }),
   messagesActions
 )(Messages);
