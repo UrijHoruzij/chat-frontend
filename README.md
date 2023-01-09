@@ -1,24 +1,36 @@
-![GitHub](https://img.shields.io/github/license/UrijHoruzij/Chat-Frontend) ![GitHub package.json version](https://img.shields.io/github/package-json/v/UrijHoruzij/Chat-Frontend)
+<p align="center">
+  <img src="./assets/logo.png" alt="Chat frontend logo" width="128" height="128">
+  <h1 align="center">Chat Frontend</h1>
+</p>
+<p align="center">
+    <a aria-label="Version" href="https://github.com/UrijHoruzij/Chat-Frontend">
+      <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/UrijHoruzij/chat-frontend?color=fcc069">
+    </a>
+    <a aria-label="License" href="https://github.com/UrijHoruzij/Chat-Frontend/blob/master/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/github/license/UrijHoruzij/chat-frontend?color=fcc069">
+    </a>
+  </p>
 
-## Клиентская часть чата
+Realtime chat app with websockets using Node.js, Express and Socket.io with React JS on the front end with a custom UI.
 
-#### Главная страница
+#### Home page
 
-![Главная страница](https://github.com/UrijHoruzij/Chat-Frontend/blob/master/preview/Chat.jpg)
+![Home page](https://github.com/UrijHoruzij/Chat-Frontend/blob/master/preview/Chat.jpg)
 
-#### Cтраница входа
+#### Login page
 
-![Cтраница входа](https://github.com/UrijHoruzij/Chat-Frontend/blob/master/preview/Login.jpg)
+![Login page](https://github.com/UrijHoruzij/Chat-Frontend/blob/master/preview/Login.jpg)
 
-## Планы по изменению:
+## Change plans:
 
-- Добавление Socket.IO File Upload.
-- Добавить галерею изображений, которые загрузил пользователь.
-- Добавить больше настроек.
-- Создать собственные компоненты формы.
-- Создать библиотеку компонентов.
+- Add Socket.IO File Upload.
+- Add a gallery of images that the user uploaded.
+- Add more settings.
+- Create custom form components.
+- Create a library of components.
+- Go to Next.js.
 
-## Стек технологий:
+## Technology stack:
 
 - ReactJS
 - Redux
@@ -27,3 +39,7 @@
 - Ant Design
 - date-fns
 - Formik
+
+## License
+
+Chat-frontend is released under the [GPL-3.0 License](https://github.com/UrijHoruzij/Chat-Frontend/blob/master/LICENSE).
