@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.png" alt="Chat frontend logo" width="128" height="128">
+  <img src="./assets/logo.svg" alt="Chat frontend logo" width="128" height="128">
   <h1 align="center">Chat Frontend</h1>
 </p>
 <p align="center">
