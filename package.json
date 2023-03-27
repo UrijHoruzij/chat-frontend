@@ -9,7 +9,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@navjobs/upload": "^3.2.0",
-    "@svgr/webpack": "4.3.3",
+    "@svgr/webpack": "7.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
